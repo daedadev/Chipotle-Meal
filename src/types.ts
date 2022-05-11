@@ -11,10 +11,10 @@ export type Extras = {
 export type Order = {
   price: number;
   meal: string;
-  proteing: string;
+  protein: string;
   bean: string;
   rice: string;
   salsa: string;
   toppings: string[];
-  extras: string[];
+  extras: Extras[];
 };
