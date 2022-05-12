@@ -1,9 +1,9 @@
-import { PricedItem, Items } from "./types";
+import { PricedItem, Item } from "./OrderItems.types";
 
-export const mealTypes: Items[] = [
+export const mealTypes: Item[] = [
   { name: "burrito", image: "burrito.png", calories: 0 },
   { name: "bowl", image: "bowl.jpg", calories: 0 },
-  { name: "tacos", image: "tacos.jpg", calories: 0 },
+  { name: "tacos", image: "tacos.jpg", calories: 220 },
 ];
 
 export const proteinTypes: PricedItem[] = [
@@ -45,25 +45,25 @@ export const proteinTypes: PricedItem[] = [
   },
 ];
 
-export const beanTypes: Items[] = [
+export const beanTypes: Item[] = [
   { name: "black", image: "black-beans.png", calories: 130 },
   { name: "pinto", image: "pinto-beans.png", calories: 130 },
 ];
 
-export const riceTypes: Items[] = [
+export const riceTypes: Item[] = [
   { name: "white rice", image: "white-rice.png", calories: 210 },
   { name: "brown rice", image: "brown-rice.png", calories: 210 },
-  { name: "cauliflower rice", image: "cailiflower-rice.png", calories: 210 },
+  { name: "cauliflower rice", image: "cauliflower-rice.png", calories: 210 },
 ];
 
-export const salsaTypes: Items[] = [
+export const salsaTypes: Item[] = [
   { name: "tomato", image: "tomato.png", calories: 25 },
   { name: "tomatillo-green chili", image: "green-chili.png", calories: 15 },
   { name: "tomatillo-red chili", image: "red-chili.png", calories: 30 },
   { name: "vinagrette", image: "vinagrette.png", calories: 220 },
 ];
 
-export const toppings: Items[] = [
+export const toppings: Item[] = [
   { name: "sour cream", image: "sour-cream.png", calories: 110 },
   { name: "corn", image: "corn.png", calories: 80 },
   { name: "fajita veggies", image: "fajita-veggies.png", calories: 20 },

@@ -1,4 +1,4 @@
-export type Items = {
+export type Item = {
   name: string;
   image: string;
   calories: number;
@@ -13,11 +13,12 @@ export type PricedItem = {
 
 export type Order = {
   price: number;
-  meal: Items;
+  meal: Item;
   protein: PricedItem;
-  bean: Items;
-  rice: Items;
-  salsa: Items;
-  toppings: Items[];
+  bean: Item;
+  rice: Item;
+  salsa: Item;
+  toppings: Item[];
   extras: PricedItem[];
+  calories: number;
 };
