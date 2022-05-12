@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Order, PricedItem, Item } from "../Meal.types";
+import type { Order, PricedItem, Item } from "../Food.types";
 import {
   mealTypes,
   proteinTypes,
