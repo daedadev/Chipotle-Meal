@@ -6,6 +6,8 @@ This project was designed to make the hard choices for you. Everyone has gone to
 
 This project was developed using React, Typescript, Vite, and TailwindCSS. Make sure to follow the proper steps to install and run this project. I hope you enjoy.
 
+Live Application: https://daedadev.github.io/Chipotle-Meal/
+
 ## Project Setup
 
 This application uses Javascript so you'll need node.js to run this application and download its dependencies. If you don't have node installed you can get that [here](https://nodejs.org/en/). You'll also need `git` installed on your computer as well which you can download [here](https://git-scm.com/downloads).
