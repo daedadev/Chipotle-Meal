@@ -25,18 +25,27 @@ Now to start the project you can simply type into the command line `npm run dev`
 From the moment you load up the project you'll be met already with a generated meal which randomly chooses items from the local database. All of the data, images, prices, calories, are stored in a local file.
 
 This is the main page. To the top left you'll see the Chipotle logo along with the title of the application, and to the top left you'll find a button that reads "To Chipotle". Clicking this button will take you to the actual Chipotle website where you can place an order if you'd like.
-![Home Page Image](/public/screenshots/screenshot1.PNG)
+
+![Top of main page](/public/screenshots/screenshot1.PNG)
 
 Scrolling to the bottom of the page will reveal the price of the meal that was generated as well as the total calories found in that meal.
-![Home Page Image](/public/screenshots/screenshot2.PNG)
+
+![Bottom of main page](/public/screenshots/screenshot2.PNG)
 
 Now at the bottom right of the screen you'll see a button that reads "Randomize Your Order". Clicking this button will run the random generation again and output a newly random order for you.
-![Home Page Image](/public/screenshots/screenshot3.PNG)
+
+![Main page after random generation](/public/screenshots/screenshot3.PNG)
 
 ## Usage Mobile
 
 Mobile usage of this application is very similar to the desktop use. Instead of rows most of the information is displayed in a single column.
-![Home Page Image](/public/screenshots/screenshot4.PNG)
+
+![Top of main page on mobile](/public/screenshots/screenshot4.PNG)
 
 Scrolling to the bottom of the page again reveals the price and calorie totals. It will also be a lot more apparent that the header and footer are fixed at this point. The randomize order button is also no much larger and mobile friendly.
-![Home Page Image](/public/screenshots/screenshot5.PNG)
+
+![Bottom of main page on mobile](/public/screenshots/screenshot5.PNG)
+
+## Contributions
+
+If you wish to add anything to this project or collaborate feel free to email me at danielchrismoore@gmail.com Also feel free to fork and clone this project. Feedback is greatly appreciated. As I am currently a junior developer any critisism is also very welcome.

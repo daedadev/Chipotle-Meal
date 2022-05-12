@@ -141,7 +141,10 @@ function App() {
             <h1 className="w-[95%] text-3xl font-bold text-yellow-900 text-left">
               {randomOrder?.meal.name.toUpperCase()}
             </h1>
-            <img src={randomOrder?.meal.image} />
+            <img
+              alt={`Picture of the food item ${randomOrder?.meal.name} from Chipotle`}
+              src={randomOrder?.meal.image}
+            />
           </article>
           <article className="w-[95%]">
             <section className="flex flex-col w-full justify-evenly">
@@ -174,14 +177,14 @@ function App() {
                   <h1 className="text-3xl font-bold text-yellow-900">
                     TOPPINGS
                   </h1>
-                  {randomOrder?.toppings.map((topping) => {
-                    return <OrderItem item={topping as Item} />;
+                  {randomOrder?.toppings.map((topping, index) => {
+                    return <OrderItem key={index} item={topping as Item} />;
                   })}
                 </div>
                 <div className="flex flex-col md:w-[49%] w-full">
                   <h1 className="text-3xl font-bold text-yellow-900">EXTRAS</h1>
-                  {randomOrder?.extras.map((extra) => {
-                    return <OrderItem item={extra as Item} />;
+                  {randomOrder?.extras.map((extra, index) => {
+                    return <OrderItem key={index} item={extra as Item} />;
                   })}
                 </div>
               </article>
