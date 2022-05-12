@@ -12,7 +12,7 @@ export type PricedItem = {
 };
 
 export type Order = {
-  price: number;
+  price: string;
   meal: Item;
   protein: PricedItem;
   bean: Item;

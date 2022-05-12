@@ -1,4 +1,4 @@
-import { PricedItem, Item } from "./OrderItems.types";
+import { PricedItem, Item } from "./Meal.types";
 
 export const mealTypes: Item[] = [
   { name: "burrito", image: "burrito.png", calories: 0 },

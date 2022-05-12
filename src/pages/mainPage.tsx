@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Order, PricedItem, Item } from "../OrderItems.types";
+import type { Order, PricedItem, Item } from "../Meal.types";
 import "./mainPage.css";
 import {
   mealTypes,
@@ -11,6 +11,9 @@ import {
   extras,
 } from "../data.js";
 import OrderItem from "../components/orderItem";
+import Footer from "../components/footer";
+import Header from "../components/header";
+import LoadingIcon from "../components/loadingIcon";
 
 function App() {
   const [randomOrder, setRandomOrder] = useState<Order>();
@@ -74,14 +77,17 @@ function App() {
     );
     calorieCost += getCalorieCount(randomExtras);
 
-    let finalPrice = 0;
+    let price = 0;
 
-    finalPrice += randomProteinPrice;
+    price += randomProteinPrice;
 
     // Set type to get cost/price pair
     (randomExtras as PricedItem[]).forEach((item) => {
-      finalPrice += item.cost;
+      price += item.cost;
     });
+
+    // Ensure final price contains leading zeros
+    let finalPrice = price.toFixed(2);
 
     // Finalizing order
     setRandomOrder({
@@ -115,100 +121,90 @@ function App() {
   }, []);
 
   if (randomOrder === undefined) {
-    return <h1>lol</h1>;
+    return (
+      <>
+        <Header />
+        <div className="flex flex-col bg-white w-full min-h-screen items-center justify-center">
+          <LoadingIcon />
+        </div>
+        <Footer ClickHandler={randomizeOrder} loading={true} />
+      </>
+    );
   }
 
   return (
-    <div className="flex flex-col bg-white w-full h-fit items-center">
-      <header className="flex w-full h-24 items-center justify-between">
-        <img className="w-20" src="Chipotle_Mexican_Grill_logo.png" />
-        <h1 className="text-center">Random Chipotle Order</h1>
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-center">Make Your Order A Reality</h1>
-          <a
-            className="text-center"
-            href="https://chipotle.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            To Chipotle
-          </a>
-        </div>
-      </header>
-      <section className="flex flex-col w-full xl:w-[1280px] items-center justify-center">
-        <article className="flex flex-col w-full items-center justify-center">
-          <h1 className="text-3xl font-bold text-yellow-900">
-            {randomOrder?.meal.name.toUpperCase()}
-          </h1>
-          <img src={randomOrder?.meal.image} />
-        </article>
-        <article className="w-[95%]">
-          <section className="flex flex-col w-full justify-evenly">
-            <article className="flex md:flex-row flex-col justify-between">
-              <div className="flex flex-col md:w-[49%] w-full">
-                <h1 className="text-3xl font-bold text-yellow-900">Protein</h1>
-                <OrderItem item={randomOrder?.protein as Item} />
+    <>
+      <Header />
+      <div className="flex flex-col bg-white w-full min-h-screen items-center">
+        <section className="flex flex-col w-full xl:w-[1280px] items-center justify-center">
+          <article className="flex flex-col w-full items-center justify-center mt-5">
+            <h1 className="w-[95%] text-3xl font-bold text-yellow-900 text-left">
+              {randomOrder?.meal.name.toUpperCase()}
+            </h1>
+            <img src={randomOrder?.meal.image} />
+          </article>
+          <article className="w-[95%]">
+            <section className="flex flex-col w-full justify-evenly">
+              <article className="flex md:flex-row flex-col justify-between">
+                <div className="flex flex-col md:w-[49%] w-full">
+                  <h1 className="text-3xl font-bold text-yellow-900">
+                    PROTEIN
+                  </h1>
+                  <OrderItem item={randomOrder?.protein as Item} />
+                </div>
+                <div className="flex flex-col md:w-[49%] w-full">
+                  <h1 className="text-3xl font-bold text-yellow-900">BEANS</h1>
+                  <OrderItem item={randomOrder?.bean as Item} />
+                </div>
+              </article>
+              <article className="flex md:flex-row flex-col justify-between">
+                <div className="flex flex-col md:w-[49%] w-full">
+                  <h1 className="text-3xl font-bold text-yellow-900">RICE</h1>
+                  <OrderItem item={randomOrder?.rice as Item} />
+                </div>
+                <div className="flex flex-col md:w-[49%] w-full">
+                  <h1 className="text-3xl font-bold text-yellow-900">SALSA</h1>
+                  <OrderItem item={randomOrder?.salsa as Item} />
+                </div>
+              </article>
+            </section>
+            <section className="flex flex-col w-full justify-evenly">
+              <article className="flex md:flex-row flex-col justify-between">
+                <div className="flex flex-col md:w-[49%] w-full">
+                  <h1 className="text-3xl font-bold text-yellow-900">
+                    TOPPINGS
+                  </h1>
+                  {randomOrder?.toppings.map((topping) => {
+                    return <OrderItem item={topping as Item} />;
+                  })}
+                </div>
+                <div className="flex flex-col md:w-[49%] w-full">
+                  <h1 className="text-3xl font-bold text-yellow-900">EXTRAS</h1>
+                  {randomOrder?.extras.map((extra) => {
+                    return <OrderItem item={extra as Item} />;
+                  })}
+                </div>
+              </article>
+            </section>
+            <section className="flex w-full flex-row justify-evenly items-center">
+              <div className="flex flex-col justify-center items-center">
+                <h1 className="text-3xl font-bold text-yellow-900">Price</h1>
+                <h2 className="text-3xl font-bold text-green-700">
+                  ${randomOrder?.price}
+                </h2>
               </div>
-              <div className="flex flex-col md:w-[49%] w-full">
-                <h1 className="text-3xl font-bold text-yellow-900">-Beans-</h1>
-                <OrderItem item={randomOrder?.bean as Item} />
+              <div className="flex flex-col justify-center items-center">
+                <h1 className="text-3xl font-bold text-yellow-900">Calories</h1>
+                <h2 className="text-3xl font-bold text-slate-900">
+                  {randomOrder?.calories}
+                </h2>
               </div>
-            </article>
-            <article className="flex md:flex-row flex-col justify-between">
-              <div className="flex flex-col md:w-[49%] w-full">
-                <h1 className="text-3xl font-bold text-yellow-900">-Rice-</h1>
-                <OrderItem item={randomOrder?.rice as Item} />
-              </div>
-              <div className="flex flex-col md:w-[49%] w-full">
-                <h1 className="text-3xl font-bold text-yellow-900">-Salsa-</h1>
-                <OrderItem item={randomOrder?.salsa as Item} />
-              </div>
-            </article>
-          </section>
-          <section className="flex flex-col w-full justify-evenly">
-            <article className="flex md:flex-row flex-col justify-between">
-              <div className="flex flex-col md:w-[49%] w-full">
-                <h1 className="text-3xl font-bold text-yellow-900">
-                  -Toppings-
-                </h1>
-                {randomOrder?.toppings.map((topping) => {
-                  return <OrderItem item={topping as Item} />;
-                })}
-              </div>
-              <div className="flex flex-col md:w-[49%] w-full">
-                <h1 className="text-3xl font-bold text-yellow-900">-Extras-</h1>
-                {randomOrder?.extras.map((extra) => {
-                  return <OrderItem item={extra as Item} />;
-                })}
-              </div>
-            </article>
-          </section>
-          <section className="flex w-full flex-row justify-evenly items-center">
-            <div className="flex flex-col justify-center items-center">
-              <h1 className="text-3xl font-bold text-yellow-900">Price</h1>
-              <h2 className="text-3xl font-bold text-green-700">
-                ${randomOrder?.price}
-              </h2>
-            </div>
-            <div className="flex flex-col justify-center items-center">
-              <h1 className="text-3xl font-bold text-yellow-900">Calories</h1>
-              <h2 className="text-3xl font-bold text-slate-900">
-                {randomOrder?.calories}
-              </h2>
-            </div>
-          </section>
-        </article>
-      </section>
-      <footer className="sticky flex flex-row w-full bottom-0 h-36 items-center justify-evenly bg-slate-100 mt-10">
-        <div>
-          <h1 className="text-yellow-800 font-bold">Your Meal</h1>
-          <h1>Click the button to randomize your order</h1>
-        </div>
-        <button className="w-52 text-xl text-white bg-yellow-800 border-2 hover:bg-yellow-700 p-3">
-          Randomize Your Order
-        </button>
-      </footer>
-    </div>
+            </section>
+          </article>
+        </section>
+      </div>
+      <Footer ClickHandler={randomizeOrder} loading={false} />
+    </>
   );
 }
 
