@@ -1,5 +1,5 @@
 import React from "react";
-import type { PricedItem, Item } from "../Meal.types";
+import type { PricedItem, Item } from "../Food.types";
 
 interface Props {
   item: Item | PricedItem;
