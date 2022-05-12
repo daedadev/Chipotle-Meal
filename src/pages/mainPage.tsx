@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import type { Order, PricedItem, Item } from "../Meal.types";
-import "./mainPage.css";
 import {
   mealTypes,
   proteinTypes,
